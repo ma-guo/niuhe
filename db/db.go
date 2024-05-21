@@ -12,8 +12,8 @@ import (
 	"database/sql"
 
 	"github.com/go-sql-driver/mysql"
-	"github.com/go-xorm/xorm"
 	"github.com/ma-guo/niuhe"
+	"xorm.io/xorm"
 )
 
 type DB struct {

@@ -21,8 +21,6 @@ const (
 	DELETE   int = 16
 	HEAD     int = 32
 	OPTIONS  int = 64
-	TRACE    int = 128
-	CONNECT  int = 256
 
 	abortIndex int8 = math.MaxInt8 / 2
 )
@@ -148,12 +146,6 @@ func (mod *Module) RegisterWithProtocolFactory(group interface{}, pf IApiProtoco
 			} else if strings.HasSuffix(name, "_OPTIONS") {
 				methods = OPTIONS
 				name = name[:len(name)-len("_OPTIONS")]
-			} else if strings.HasSuffix(name, "_TRACE") {
-				methods = TRACE
-				name = name[:len(name)-len("_TRACE")]
-			} else if strings.HasSuffix(name, "_CONNECT") {
-				methods = CONNECT
-				name = name[:len(name)-len("_CONNECT")]
 			} else {
 				methods = GET_POST
 			}
