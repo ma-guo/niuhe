@@ -139,6 +139,12 @@ func (svr *Server) GetGinEngine(loggerConfig ...gin.LoggerConfig) *gin.Engine {
 				if (info.Methods & OPTIONS) != 0 {
 					group.OPTIONS(info.Path, info.HandleFunc)
 				}
+				if (info.Methods & TRACE) != 0 {
+					group.TRACE(info.Path, info.HandleFunc)
+				}
+				if (info.Methods & CONNECT) != 0 {
+					group.CONNECT(info.Path, info.HandleFunc)
+				}
 			}
 		}
 	}
