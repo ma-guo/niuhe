@@ -6,8 +6,8 @@ import (
 	"os"
 	"reflect"
 
+	"github.com/ma-guo/niuhe"
 	"github.com/robertkrimen/otto"
-	"github.com/ziipin-server/niuhe"
 )
 
 type JsView struct {

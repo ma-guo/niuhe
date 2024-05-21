@@ -2,7 +2,7 @@ package orm
 
 import (
 	"github.com/go-xorm/xorm"
-	"github.com/ziipin-server/niuhe/svrjs"
+	"github.com/ma-guo/niuhe/svrjs"
 )
 
 type EngineWrapper struct {

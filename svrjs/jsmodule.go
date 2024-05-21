@@ -1,6 +1,6 @@
 package svrjs
 
-import "github.com/ziipin-server/niuhe"
+import "github.com/ma-guo/niuhe"
 
 //NewJsModule create a js module
 func NewJsModule(urlPrefix, scriptEntry string, paths []string, debugging bool) (*niuhe.Module, *JsView) {

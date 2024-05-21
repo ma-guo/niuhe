@@ -7,8 +7,8 @@ import (
 	"strings"
 
 	"github.com/flosch/pongo2"
+	"github.com/ma-guo/niuhe"
 	"github.com/robertkrimen/otto"
-	"github.com/ziipin-server/niuhe"
 )
 
 func getContext(vm *otto.Otto) *niuhe.Context {

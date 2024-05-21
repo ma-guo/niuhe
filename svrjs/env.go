@@ -26,7 +26,7 @@ func MakeFactory(fn func() interface{}) BuiltinModuleFactory {
 	return &simpleFactory{fn: fn}
 }
 
-//Env env struct
+// Env env struct
 type Env struct {
 	debugging              bool
 	vm                     *otto.Otto
@@ -88,7 +88,7 @@ const (
 	`
 )
 
-//NewEnv create a new environment
+// NewEnv create a new environment
 func NewEnv(loader *ScriptLoader, debugging bool) *Env {
 	env := &Env{
 		vm:                     otto.New(),
@@ -181,12 +181,12 @@ func NewEnv(loader *ScriptLoader, debugging bool) *Env {
 	return env
 }
 
-//Run run a code object, may be string, []byte, *otto.Script, etc
+// Run run a code object, may be string, []byte, *otto.Script, etc
 func (env *Env) Run(code interface{}) (otto.Value, error) {
 	return env.vm.Run(code)
 }
 
-//InstallBuiltinModule just like its name
+// InstallBuiltinModule just like its name
 func (env *Env) InstallBuiltinModule(id string, content interface{}) {
 	val, err := env.vm.ToValue(content)
 	if err != nil {

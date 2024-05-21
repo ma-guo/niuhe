@@ -1,7 +1,7 @@
 package adminbase
 
 import (
-	"github.com/ziipin-server/niuhe"
+	"github.com/ma-guo/niuhe"
 )
 
 type AdminCrudView struct {
