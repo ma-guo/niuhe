@@ -124,6 +124,21 @@ func (svr *Server) GetGinEngine(loggerConfig ...gin.LoggerConfig) *gin.Engine {
 				if (info.Methods & POST) != 0 {
 					group.POST(info.Path, info.HandleFunc)
 				}
+				if (info.Methods & PUT) != 0 {
+					group.PUT(info.Path, info.HandleFunc)
+				}
+				if (info.Methods & DELETE) != 0 {
+					group.DELETE(info.Path, info.HandleFunc)
+				}
+				if (info.Methods & PATCH) != 0 {
+					group.PATCH(info.Path, info.HandleFunc)
+				}
+				if (info.Methods & HEAD) != 0 {
+					group.HEAD(info.Path, info.HandleFunc)
+				}
+				if (info.Methods & OPTIONS) != 0 {
+					group.OPTIONS(info.Path, info.HandleFunc)
+				}
 			}
 		}
 	}

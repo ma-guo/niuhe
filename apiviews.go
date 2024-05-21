@@ -13,9 +13,15 @@ import (
 )
 
 const (
-	GET        int  = 1
-	POST       int  = 2
-	GET_POST   int  = 3
+	GET      int = 1
+	POST     int = 2
+	GET_POST int = 3
+	PUT      int = 4
+	PATCH    int = 8
+	DELETE   int = 16
+	HEAD     int = 32
+	OPTIONS  int = 64
+
 	abortIndex int8 = math.MaxInt8 / 2
 )
 
@@ -125,6 +131,21 @@ func (mod *Module) RegisterWithProtocolFactory(group interface{}, pf IApiProtoco
 			} else if strings.HasSuffix(name, "_POST") {
 				methods = POST
 				name = name[:len(name)-len("_POST")]
+			} else if strings.HasSuffix(name, "_PUT") {
+				methods = PUT
+				name = name[:len(name)-len("_PUT")]
+			} else if strings.HasSuffix(name, "_PATCH") {
+				methods = PATCH
+				name = name[:len(name)-len("_PATCH")]
+			} else if strings.HasSuffix(name, "_DELETE") {
+				methods = DELETE
+				name = name[:len(name)-len("_DELETE")]
+			} else if strings.HasSuffix(name, "_HEAD") {
+				methods = HEAD
+				name = name[:len(name)-len("_HEAD")]
+			} else if strings.HasSuffix(name, "_OPTIONS") {
+				methods = OPTIONS
+				name = name[:len(name)-len("_OPTIONS")]
 			} else {
 				methods = GET_POST
 			}
