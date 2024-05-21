@@ -3,7 +3,7 @@ package niuhe
 import (
 	"reflect"
 
-	"github.com/ziipin-server/zpform"
+	"github.com/ma-guo/zpform"
 )
 
 type isCustomRoot interface {
