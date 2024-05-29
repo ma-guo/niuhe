@@ -77,6 +77,15 @@ func (mod *Module) Use(middlewares ...HandlerFunc) *Module {
 	return mod
 }
 
+// 获取当前的 protocol
+func (mod *Module) GetProtocol() IApiProtocol {
+	pf := mod.pf
+	if pf != nil {
+		return pf.GetProtocol()
+	}
+	return nil
+}
+
 func parseName(camelName string) string {
 	re := regexp.MustCompile("[A-Z][a-z0-9]*")
 	parts := re.FindAllString(camelName, -1)
