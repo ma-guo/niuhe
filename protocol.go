@@ -25,6 +25,9 @@ func (self DefaultApiProtocol) Read(c *Context, reqValue reflect.Value) error {
 }
 
 func (self DefaultApiProtocol) Write(c *Context, rsp reflect.Value, err error) error {
+	if c._ignoreResult {
+		return nil
+	}
 	rspInst := rsp.Interface()
 	if _, ok := rspInst.(isCustomRoot); ok {
 		c.JSON(200, rspInst)

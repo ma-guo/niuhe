@@ -4,13 +4,14 @@ import "github.com/gin-gonic/gin"
 
 type Context struct {
 	*gin.Context
-	index    int8
-	handlers []HandlerFunc
-	sessCtrl _SessCtrl
+	index         int8
+	handlers      []HandlerFunc
+	sessCtrl      _SessCtrl
+	_ignoreResult bool
 }
 
 func newContext(c *gin.Context, middlewares []HandlerFunc) *Context {
-	return &Context{Context: c, index: -1, handlers: middlewares}
+	return &Context{Context: c, index: -1, handlers: middlewares, _ignoreResult: false}
 }
 
 func (c *Context) Next() {
@@ -130,4 +131,9 @@ func (c *Context) Data(code int, contentType string, data []byte) {
 func (c *Context) File(filepath string) {
 	c.beforeOutput()
 	c.Context.File(filepath)
+}
+
+// 在自定义 protocol 中不格式化返回结果, 自定义返回格式
+func (c *Context) IgnoreResult() {
+	c._ignoreResult = true
 }
