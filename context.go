@@ -137,3 +137,7 @@ func (c *Context) File(filepath string) {
 func (c *Context) IgnoreResult() {
 	c._ignoreResult = true
 }
+
+func (c *Context) IsIgnoreResult() bool {
+	return c._ignoreResult
+}
