@@ -8,10 +8,10 @@ import (
 	"strconv"
 	"sync"
 
-	"github.com/go-xorm/core"
-	"github.com/go-xorm/xorm"
 	"github.com/lennon-guan/pipe"
 	"github.com/ma-guo/niuhe"
+	"xorm.io/core"
+	"xorm.io/xorm"
 )
 
 type Any map[string]interface{}

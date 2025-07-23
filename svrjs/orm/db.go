@@ -1,8 +1,8 @@
 package orm
 
 import (
-	"github.com/go-xorm/xorm"
 	"github.com/ma-guo/niuhe/svrjs"
+	"xorm.io/xorm"
 )
 
 type EngineWrapper struct {
