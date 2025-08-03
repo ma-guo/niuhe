@@ -8,10 +8,12 @@ type Context struct {
 	handlers      []HandlerFunc
 	sessCtrl      _SessCtrl
 	_ignoreResult bool
+	codes         *IntConstGroup
+	codefunc      CodeFunc
 }
 
 func newContext(c *gin.Context, middlewares []HandlerFunc) *Context {
-	return &Context{Context: c, index: -1, handlers: middlewares, _ignoreResult: false}
+	return &Context{Context: c, index: -1, handlers: middlewares, _ignoreResult: false, codes: nil}
 }
 
 func (c *Context) Next() {
@@ -140,4 +142,32 @@ func (c *Context) IgnoreResult() {
 
 func (c *Context) IsIgnoreResult() bool {
 	return c._ignoreResult
+}
+
+func (c *Context) SetCodes(codes []IntConstItem) {
+	group := &IntConstGroup{
+		items: make(map[int]string),
+		keys:  []int{},
+	}
+	for _, code := range codes {
+		group.items[code.Value] = code.Name
+		group.keys = append(group.keys, code.Value)
+	}
+	c.codes = group
+}
+
+// 检查错误码
+func (c *Context) CheckCode(code int) {
+	if code == 0 || c.codes == nil || len(c.codes.keys) == 0 {
+		// 没有定义则默认包含
+		return
+	}
+	// 注册通知
+	if _, exists := c.codes.items[code]; !exists {
+		if c.codefunc != nil {
+			c.codefunc(code, c.Request.URL.Path)
+		} else {
+			LogError("unknown error code: %d with %v", code, c.Request.URL.Path)
+		}
+	}
 }

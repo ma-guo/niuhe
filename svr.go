@@ -150,6 +150,7 @@ func (svr *Server) GetGinEngine(loggerConfig ...gin.LoggerConfig) *gin.Engine {
 					group.OPTIONS(info.Path, info.HandleFunc)
 				}
 			}
+			mod.parseCodes()
 		}
 	}
 	return svr.engine
